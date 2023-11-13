@@ -229,41 +229,13 @@ ufo_body_y_p = 0
 
 line1_x_p = 0 
 
-#Jaden Lam-------------------
-#Stars
-x_lam = random.randrange(10, 50)
-y_lam = random.randrange(10, 50)
-size_lam = random.randrange(1, 3)
-
-#Stars' Colour
-white_r_lam = 255
-white_g_lam = 255
-white_b_lam = 255
-    
-blue_g_lam = 200
-blue_b_lam = 255
-    
-red_r_lam = 255
-    
-yellow_r_lam = 255
-yellow_g_lam = 255
-
-#Space Ship
-tri_x_lam = 0
-tri_y_lam = 0
-tri_r_lam = 255
-tri_g_lam = 255
-tri_b_lam = 255
-
-#-------------------
-car_x_matros = 0
-parking_lines = 0
-road_lines1 = 0
-road_lines2 = 0
-sidewalk_lines1 = 0
-sidewalk_lines2 = 0
-
-#-------------------
+#-Arya--------------
+circle_x_arya = 200
+circle_y_arya = 200
+aryacolor = (192,192,192)
+backgroundarya = (0,0,0)
+aryagroundcolor = (21,71,52)
+#---------------------
 running = True
 while running:
     # GALLO VERSE SPECIFIC ----------------------------------------------------------------
@@ -281,6 +253,7 @@ while running:
                 dx, dy = event.rel
                 camera_x += -dx/scale
                 camera_y += -dy/scale
+
     # DRAWING
     screen.fill((255, 255, 255))
     window.fill((100, 100, 100))
@@ -718,56 +691,47 @@ while running:
     if leaves_x_ocampo == -100: 
         bark_x_ocampo = 640 
         leaves_x_ocampo = 695
+    # Arya---------------------------------------------------------------------------------
+    x = 1920
+    y = 1440
+    width = 640
+    height = 480
+    
+    circle_x_arya += 10
+  
+    if circle_x_arya > width and aryacolor == (255,200,0):
+      circle_x_arya = 0
+      aryacolor = (192,192,192)
+      backgroundarya = (0,0,0)
+      aryagroundcolor = (21,71,52)
+      
+  
+    elif circle_x_arya > width and aryacolor == (192,192,192):
+        circle_x_arya = 0
+        aryacolor = (255,200,0)
+        backgroundarya = (135, 206, 235)
+        aryagroundcolor = (0,166,25)
 
-    #Jaden Lam-------------------------------------------------------------------------------
-    x = 640 * 4
-    y = 0
-    
-    #Star Blinking
-    blink_lam = random.randrange(1, 16)
-    
-    if blink_lam == 1:
-        white_r_lam = 0
-        white_g_lam = 0
-        white_b_lam = 0
-    if blink_lam == 2:
-        blue_g_lam = 0
-        blue_b_lam = 0
-    if blink_lam == 3:
-        red_r_lam = 0
-    if blink_lam == 4:
-        yellow_r_lam = 0
-        yellow_g_lam = 0
+    pygame.draw.rect(screen, (backgroundarya), (x, y, width, height))
 
-    #Space Ship
-    tri_x_lam += 2
-    if tri_r_lam != 0:
-        tri_r_lam -= 1
-        tri_g_lam -= 1
-        tri_b_lam -= 1
+    if backgroundarya == (0,0,0):
+        pygame.draw.circle(screen, (255,255,255), (x + 70, y + 50), 5)
+        pygame.draw.circle(screen, (255,255,255), (x + 100, y + 40), 5)
+        pygame.draw.circle(screen, (255,255,255), (x + 200, y + 70), 5)
+        pygame.draw.circle(screen, (255,255,255), (x + 360, y + 30), 5)
     
-    #White Stars
-    pygame.draw.circle(screen, (white_r_lam, white_g_lam, white_b_lam), (x+x_lam+100, y+y_lam+150), size_lam-1)
-    pygame.draw.circle(screen, (white_r_lam, white_g_lam, white_b_lam), (x+x_lam+360, y+y_lam+300), size_lam-2)
-    pygame.draw.circle(screen, (white_r_lam, white_g_lam, white_b_lam), (x+x_lam+150, y+y_lam+40), size_lam+1)
-    #Blue Stars
-    pygame.draw.circle(screen, (0, blue_g_lam, blue_b_lam), (x+x_lam+200, y+y_lam+260), size_lam-2)
-    pygame.draw.circle(screen, (0, blue_g_lam, blue_b_lam), (x+x_lam, y+y_lam+120), size_lam)
-    pygame.draw.circle(screen, (0, blue_g_lam, blue_b_lam), (x+x_lam+450, y+y_lam+220), size_lam+1)
-    #Red Stars
-    pygame.draw.circle(screen, (red_r_lam, 0, 0), (x+x_lam+400, y+y_lam+120), size_lam+2)
-    pygame.draw.circle(screen, (red_r_lam, 0, 0), (x+x_lam+160, y+y_lam+250), size_lam-1)
-    pygame.draw.circle(screen, (red_r_lam, 0, 0), (x+x_lam+300, y+y_lam+180), size_lam)
-    #Yellow Stars
-    pygame.draw.circle(screen, (yellow_r_lam, yellow_g_lam, 0), (x+x_lam+210, y+y_lam+240), size_lam)
-    pygame.draw.circle(screen, (yellow_r_lam, yellow_g_lam, 0), (x+x_lam+490, y+y_lam+60), size_lam-2)
-    pygame.draw.circle(screen, (yellow_r_lam, yellow_g_lam, 0), (x+x_lam+30, y+y_lam+280), size_lam+1)
-    
-    #Space Ship
-    pygame.draw.polygon(screen, (tri_r_lam, tri_g_lam, tri_b_lam), [(x+tri_x_lam, y+tri_y_lam+150), (x+tri_x_lam, y+tri_y_lam+200), (x+tri_x_lam+100, y+tri_y_lam+175)])
-    
-        
-    # ----------------------------------------------------------------------------------------
+  
+
+    pygame.draw.circle(screen, (aryacolor), (x + circle_x_arya, y + circle_y_arya - 125), 50)
+    if backgroundarya == (135,206,235):
+      pygame.draw.circle(screen, (255,255,255), (x + 120, y + 100), 65)
+      pygame.draw.circle(screen, (255,255,255), (x + 80, y + 110), 60)
+      pygame.draw.circle(screen, (255,255,255), (x + 155, y + 110), 60)
+      pygame.draw.circle(screen, (255,255,255), (x + 520, y + 130), 65)
+      pygame.draw.circle(screen, (255,255,255), (x + 480, y + 160), 60)
+      pygame.draw.circle(screen, (255,255,255), (x + 555, y + 160), 60)
+    pygame.draw.rect(screen, (aryagroundcolor), (x, y+360, width, 120))
+#------------------------------------------------------------
 
     # Must have these coordinates
     x = 1920
@@ -785,172 +749,7 @@ while running:
     screen.blit(welcome_text_gallo, (x + width//2 - welcome_text_gallo.get_width()//2, y + height//3 - welcome_text_gallo.get_height()//2))
     scaled_text = pygame.transform.scale(text_gallo, (text_gallo.get_width() * text_scale_gallo, text_gallo.get_height() * text_scale_gallo))
     screen.blit(scaled_text, (x + width//2 - scaled_text.get_width()//2, y + height//2 - scaled_text.get_height()//2))
-
-    # Christian -------------------------------------------------------------------------------------
-    x = 3840
-    y = 2880
-    width = 640
-    height = 480
     
-    car_x_matros += 3
-    
-    if car_x_matros > width:
-        car_x_matros = 0
-    
-    # Rather than screen.fill, draw a rectangle
-    pygame.draw.rect(screen, (0, 66, 0), (x, y, width, height-200))
-
-    # Parking Lot
-    # Background Parking
-    pygame.draw.rect(screen, (80, 80, 80), (x, y+200, width-300, height))
-
-    # Parking Lines
-    while parking_lines < (width-300):
-        pygame.draw.rect(screen, (255, 255, 255), (x+parking_lines, y+350, width-635, height-350))
-        parking_lines += 50
-    pygame.draw.rect(screen, (255, 255, 255), (x, y+415, width-337, height-475))
-
-    # Road
-    # Sidewalk
-    pygame.draw.rect(screen, (166, 166, 166), (x, y+90, width, height-300))
-    pygame.draw.rect(screen, (166, 166, 166), (x+320, y, width-460, height))
-    while sidewalk_lines1 <= width:
-        pygame.draw.rect(screen, (150, 150, 150), (x+sidewalk_lines1, y+90, width-638, height-300))
-        sidewalk_lines1 += 30
-    while sidewalk_lines2 <= height:
-        pygame.draw.rect(screen, (150, 150, 150), (x+320, y+sidewalk_lines2, width-460, height-478))
-        sidewalk_lines2 += 30
-    
-    # Road Entrance to Lot
-    road_entrance = [
-        (x+312, y+270),
-        (x+355, y+270),
-        (x+355, y+330),
-        (x+312, y+330)
-    ]
-    pygame.draw.polygon(screen, (80, 80, 80), road_entrance)
-    
-    # Main road
-    pygame.draw.rect(screen, (80, 80, 80), (x, y+120, width, height-360))
-    pygame.draw.rect(screen, (0, 0, 0), (x, y+130, width, height-380))
-    while road_lines1 <= width:
-        pygame.draw.rect(screen, (255, 255, 0), (x+road_lines1, y+175, width-610, height-475))   
-        road_lines1 += 50
-    pygame.draw.rect(screen, (80, 80, 80), (x+350, y, width-520, height))
-    pygame.draw.rect(screen, (0, 0, 0), (x+360, y, width-540, height))
-    while road_lines2 <= height:
-        pygame.draw.rect(screen, (255, 255, 0), (x+405, y+road_lines2, width-635, height-450))
-        road_lines2 += 50
-    road_center_matros = [
-        (x+350, y+130),
-        (x+470, y+130),
-        (x+470, y+229),
-        (x+350, y+229)
-    ]
-    pygame.draw.polygon(screen, (0, 0, 0), road_center_matros)
-
-
-
-    # Car 1
-    car_body_matros = [
-        (x + car_x_matros, y + 191),
-        (x + 80 + car_x_matros, y + 191),
-        (x + 80 + car_x_matros, y + 220),
-        (x + car_x_matros, y + 220)
-    ]
-
-    car_frontlight1 = [
-        (x + 75 + car_x_matros, y + 195),
-        (x + 75 + car_x_matros, y + 202),
-        (x + 80 + car_x_matros, y + 202),
-        (x + 80 + car_x_matros, y + 195)
-    ]
-
-    car_frontlight2 = [
-        (x + 75 + car_x_matros, y+206),
-        (x + 75 + car_x_matros, y+213),
-        (x + 80 + car_x_matros, y+213),
-        (x + 80 + car_x_matros, y+206)
-    ]
-
-    car_backlight1 = [
-        (x + car_x_matros, y + 191),
-        (x + car_x_matros, y + 198),
-        (x + 5 + car_x_matros, y + 198),
-        (x + 5 + car_x_matros, y + 191)
-    ]
-
-    car_backlight2 = [
-        (x + car_x_matros, y + 220),
-        (x + car_x_matros, y + 213),
-        (x + 5 + car_x_matros, y + 213),
-        (x + 5 + car_x_matros, y + 220)
-    ]
-
-    car_windshield = [
-        (x + 68 + car_x_matros, y + 194),
-        (x + 54 + car_x_matros, y + 199),
-        (x + 54 + car_x_matros, y + 212),
-        (x + 68 + car_x_matros, y + 217)
-        
-    ]
-    
-    pygame.draw.polygon(screen, (0, 99, 0), car_body_matros)
-    pygame.draw.polygon(screen, (255, 255, 0), car_frontlight1)
-    pygame.draw.polygon(screen, (255, 255, 0), car_frontlight2)
-    pygame.draw.polygon(screen, (255, 0, 0), car_backlight1)
-    pygame.draw.polygon(screen, (255, 0, 0), car_backlight2)
-    pygame.draw.polygon(screen, (0, 0, 99), car_windshield)
-
-    # Car 2
-    b_car_body_matros = [
-        (x + 450, y + 357),
-        (x + 421, y + 357),
-        (x + 421, y + 437),
-        (x + 450, y + 437)
-    ]
-
-    b_car_frontlight1 = [
-        (x + 425, y + 357),
-        (x + 432, y + 357),
-        (x + 432, y + 361),
-        (x + 425, y + 361)
-    ]
-
-    b_car_frontlight2 = [
-        (x+437, y+357),
-        (x+444, y+357),
-        (x+444, y+361),
-        (x+437, y+361)
-    ]
-
-    b_car_backlight1 = [
-        (x + 421, y + 437),
-        (x + 428, y + 437),
-        (x + 428, y + 432),
-        (x + 421, y + 432)
-    ]
-
-    b_car_backlight2 = [
-        (x + 450, y + 437),
-        (x + 443, y + 437),
-        (x + 443, y + 432),
-        (x + 450, y + 432)
-    ]
-
-    b_car_windshield = [
-        (x + 424, y + 370),
-        (x + 447, y + 370),
-        (x + 442, y + 385),
-        (x + 429, y + 385)
-    ]
-
-    pygame.draw.polygon(screen, (204, 102, 0), b_car_body_matros)
-    pygame.draw.polygon(screen, (255, 255, 0), b_car_frontlight1)
-    pygame.draw.polygon(screen, (255, 255, 0), b_car_frontlight2)
-    pygame.draw.polygon(screen, (255, 0, 0), b_car_backlight1)
-    pygame.draw.polygon(screen, (255, 0, 0), b_car_backlight2)
-    pygame.draw.polygon(screen, (0, 0, 99), b_car_windshield)
 
 
     # LEAVE HERE --------------------------------------------
